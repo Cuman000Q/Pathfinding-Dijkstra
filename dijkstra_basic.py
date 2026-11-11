@@ -62,19 +62,25 @@ class Dijkstra_algorithm():
         
         return None
 
-    
-node_A=Node("A")
-node_B=Node("B")
-node_C=Node("C")
-node_D=Node("D")
 
-network = {
-    node_A: [(node_B, 5), (node_C, 1)],
-    node_B: [(node_D, 2)],
-    node_C: [(node_B, 1), (node_D, 7)],
-    node_D: []  # Destination node has no outgoing pathways
-}
+if __name__ == "__main__":
+    node_A=Node("A")
+    node_B=Node("B")
+    node_C=Node("C")
+    node_D=Node("D")
 
-solver=Dijkstra_algorithm()
+    network = {
+        node_A: [(node_B, 5), (node_C, 1)],
+        node_B: [(node_D, 2)],
+        node_C: [(node_B, 1), (node_D, 7)],
+        node_D: []  # Destination node has no outgoing pathways
+    }
 
-print(solver.find_cheapest_path(node_A, node_D, network))
+    solver=Dijkstra_algorithm()
+    path=solver.find_cheapest_path(node_A, node_D, network)
+
+    if path:
+        print("Cheapest path:", " -> ".join(node.name for node in path))
+        print("Total cost:", path[-1].g)
+    else:
+        print("No path found")
